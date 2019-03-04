@@ -81,24 +81,30 @@ public class MyLinkedList<E> {
         checkElementIndex(index);
         return unlink(node(index));
     }
+    @SuppressWarnings("Duplicates")
     E unlink(Node<E> x) {
         // assert x != null;
         final E element = x.item;
         final Node<E> next = x.next;
         final Node<E> prev = x.prev;
 
-        /**
-         * 先删除前指针
-         */
         if (prev == null) {
+            /**
+             * 如果要删除的是第一个节点
+             * 直接把它挂载到头指针上
+             */
             first = next;
         } else {
+            /**
+             * 如果不是头节点
+             * 则把前节点的后指针指向当前节点的后节点(跳过当前节点)
+             */
             prev.next = next;
             x.prev = null;
         }
 
         /**
-         * 再删除后指针
+         * 与上同理(反向)
          */
         if (next == null) {
             last = prev;
@@ -117,6 +123,7 @@ public class MyLinkedList<E> {
      * @param o
      * @return
      */
+    @SuppressWarnings("Duplicates")
     public boolean remove(Object o) {
         if (o == null) {
             /**
@@ -183,6 +190,7 @@ public class MyLinkedList<E> {
      * @param o
      * @return
      */
+    @SuppressWarnings("Duplicates")
     public int indexOf(Object o) {
         int index = 0;
         if (o == null) {
